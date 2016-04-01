@@ -15,7 +15,7 @@ protocol FavoritePokemonsViewProtocol: class
 
 protocol FavoritePokemonsWireFrameProtocol: class
 {
-    class func presentFavoritePokemonsModule(fromView view: AnyObject)
+    func presentFavoritePokemonsModule(fromView view: AnyObject)
     /**
     * Add here your methods for communication PRESENTER -> WIREFRAME
     */

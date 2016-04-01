@@ -7,7 +7,7 @@ import Foundation
 
 class FavoritePokemonsWireFrame: FavoritePokemonsWireFrameProtocol
 {
-    class func presentFavoritePokemonsModule(fromView view: AnyObject)
+    func presentFavoritePokemonsModule(fromView view: AnyObject)
     {
         // Generating module components
         var view: FavoritePokemonsViewProtocol = FavoritePokemonsView()

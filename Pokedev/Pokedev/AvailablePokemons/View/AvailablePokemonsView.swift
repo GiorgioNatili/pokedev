@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class AvailablePokemonsView: UIViewController, AvailablePokemonsViewProtocol
+class AvailablePokemonsView: UINavigationController, AvailablePokemonsViewProtocol
 {
     var presenter: AvailablePokemonsPresenterProtocol?
 }

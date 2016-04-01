@@ -7,7 +7,7 @@ import Foundation
 
 class PokemonDetailsWireFrame: PokemonDetailsWireFrameProtocol
 {
-    class func presentPokemonDetailsModule(fromView view: AnyObject)
+    func presentPokemonDetailsModule(fromView view: AnyObject)
     {
         // Generating module components
         var view: PokemonDetailsViewProtocol = PokemonDetailsView()

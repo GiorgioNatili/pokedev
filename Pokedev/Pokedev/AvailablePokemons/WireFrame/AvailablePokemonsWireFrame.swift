@@ -7,7 +7,7 @@ import Foundation
 
 class AvailablePokemonsWireFrame: AvailablePokemonsWireFrameProtocol
 {
-    class func presentAvailablePokemonsModule(fromView view: AnyObject)
+    func presentAvailablePokemonsModule(fromView view: AnyObject)
     {
         // Generating module components
         var view: AvailablePokemonsViewProtocol = AvailablePokemonsView()

@@ -15,7 +15,7 @@ protocol AvailablePokemonsViewProtocol: class
 
 protocol AvailablePokemonsWireFrameProtocol: class
 {
-    class func presentAvailablePokemonsModule(fromView view: AnyObject)
+    func presentAvailablePokemonsModule(fromView view: AnyObject)
     /**
     * Add here your methods for communication PRESENTER -> WIREFRAME
     */
