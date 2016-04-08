@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class FavoritePokemonsView: UIViewController, FavoritePokemonsViewProtocol
+class FavoritePokemonsView: UITableViewController, FavoritePokemonsViewProtocol
 {
     var presenter: FavoritePokemonsPresenterProtocol?
 }

@@ -4,18 +4,22 @@
 //
 
 import Foundation
+import UIKit
 
 class PokemonDetailsWireFrame: PokemonDetailsWireFrameProtocol
 {
-    func presentPokemonDetailsModule(fromView view: AnyObject)
+    func presentPokemonDetailsModule(fromView uiview: AnyObject)
     {
+        let viewController = uiview as! UIViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
         // Generating module components
-        var view: PokemonDetailsViewProtocol = PokemonDetailsView()
-        var presenter: protocol<PokemonDetailsPresenterProtocol, PokemonDetailsInteractorOutputProtocol> = PokemonDetailsPresenter()
-        var interactor: PokemonDetailsInteractorInputProtocol = PokemonDetailsInteractor()
-        var APIDataManager: PokemonDetailsAPIDataManagerInputProtocol = PokemonDetailsAPIDataManager()
-        var localDataManager: PokemonDetailsLocalDataManagerInputProtocol = PokemonDetailsLocalDataManager()
-        var wireFrame: PokemonDetailsWireFrameProtocol = PokemonDetailsWireFrame()
+        let view = mainStoryboard.instantiateViewControllerWithIdentifier("PokemonDetails") as! PokemonDetailsView
+        let presenter: protocol<PokemonDetailsPresenterProtocol, PokemonDetailsInteractorOutputProtocol> = PokemonDetailsPresenter()
+        let interactor: PokemonDetailsInteractorInputProtocol = PokemonDetailsInteractor()
+        let APIDataManager: PokemonDetailsAPIDataManagerInputProtocol = PokemonDetailsAPIDataManager()
+        let localDataManager: PokemonDetailsLocalDataManagerInputProtocol = PokemonDetailsLocalDataManager()
+        let wireFrame: PokemonDetailsWireFrameProtocol = PokemonDetailsWireFrame()
         
         // Connecting
         view.presenter = presenter
@@ -25,5 +29,8 @@ class PokemonDetailsWireFrame: PokemonDetailsWireFrameProtocol
         interactor.presenter = presenter
         interactor.APIDataManager = APIDataManager
         interactor.localDatamanager = localDataManager
+        
+        // Presenting
+        (viewController as! UINavigationController).pushViewController(view, animated: true)
     }
 }

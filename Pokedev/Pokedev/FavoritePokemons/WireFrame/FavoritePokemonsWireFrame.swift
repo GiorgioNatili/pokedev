@@ -4,18 +4,22 @@
 //
 
 import Foundation
+import UIKit
 
 class FavoritePokemonsWireFrame: FavoritePokemonsWireFrameProtocol
 {
-    func presentFavoritePokemonsModule(fromView view: AnyObject)
-    {
+    func presentFavoritePokemonsModule(fromView uiview: AnyObject) {
+        
+        let viewController = uiview as! UIViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
         // Generating module components
-        var view: FavoritePokemonsViewProtocol = FavoritePokemonsView()
-        var presenter: protocol<FavoritePokemonsPresenterProtocol, FavoritePokemonsInteractorOutputProtocol> = FavoritePokemonsPresenter()
-        var interactor: FavoritePokemonsInteractorInputProtocol = FavoritePokemonsInteractor()
-        var APIDataManager: FavoritePokemonsAPIDataManagerInputProtocol = FavoritePokemonsAPIDataManager()
-        var localDataManager: FavoritePokemonsLocalDataManagerInputProtocol = FavoritePokemonsLocalDataManager()
-        var wireFrame: FavoritePokemonsWireFrameProtocol = FavoritePokemonsWireFrame()
+        let view = mainStoryboard.instantiateViewControllerWithIdentifier("FavoritePokemons") as! FavoritePokemonsView
+        let presenter: protocol<FavoritePokemonsPresenterProtocol, FavoritePokemonsInteractorOutputProtocol> = FavoritePokemonsPresenter()
+        let interactor: FavoritePokemonsInteractorInputProtocol = FavoritePokemonsInteractor()
+        let APIDataManager: FavoritePokemonsAPIDataManagerInputProtocol = FavoritePokemonsAPIDataManager()
+        let localDataManager: FavoritePokemonsLocalDataManagerInputProtocol = FavoritePokemonsLocalDataManager()
+        let wireFrame: FavoritePokemonsWireFrameProtocol = FavoritePokemonsWireFrame()
         
         // Connecting
         view.presenter = presenter
@@ -25,5 +29,9 @@ class FavoritePokemonsWireFrame: FavoritePokemonsWireFrameProtocol
         interactor.presenter = presenter
         interactor.APIDataManager = APIDataManager
         interactor.localDatamanager = localDataManager
+        
+        // Presenting
+        (viewController as! UINavigationController).pushViewController(view, animated: true)
+        
     }
 }
