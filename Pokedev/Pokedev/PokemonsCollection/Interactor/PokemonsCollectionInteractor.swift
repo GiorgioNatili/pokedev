@@ -11,5 +11,51 @@ class PokemonsCollectionInteractor: PokemonsCollectionInteractorInputProtocol
     var APIDataManager: PokemonsCollectionAPIDataManagerInputProtocol?
     var localDatamanager: PokemonsCollectionLocalDataManagerInputProtocol?
     
-    init() {}
+    init() {
+    
+      // Initialization
+    
+    }
+    
+    // MARK: PRESENTER -> INTERACTOR
+    func loadData() {
+        
+        APIDataManager!.loadPokemonsData(gotPokemonsData)
+        
+    }
+    
+    // MARK: Internal implementation
+    private func dataLoadedCorrectly(result: AnyObject) {
+        
+        // Show data to the user
+        presenter!.showData(result)
+        
+    }
+    
+    private func dataLoadErrod(error: NSError) {
+        
+        // Show an error message
+        presenter?.showErrorMessage(error)
+        
+    }
+    
+    private func gotPokemonsData(response:AnyObject, err:NSError?) -> () {
+        
+        let error: NSError? = err
+        if error != nil {
+            
+            dataLoadErrod(error!)
+            
+        } else {
+            
+            dataLoadedCorrectly(response)
+        }
+        
+    }
+    
+    private func dataProgress() {
+        
+       // presenter.updateProgress(percentage)
+    }
+    
 }

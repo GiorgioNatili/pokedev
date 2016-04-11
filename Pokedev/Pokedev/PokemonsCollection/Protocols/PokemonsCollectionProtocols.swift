@@ -11,6 +11,8 @@ protocol PokemonsCollectionViewProtocol: class
     /**
     * Add here your methods for communication PRESENTER -> VIEW
     */
+    
+    func showErrorMessage(message:String)
 }
 
 protocol PokemonsCollectionWireFrameProtocol: class
@@ -33,6 +35,8 @@ protocol PokemonsCollectionPresenterProtocol: class
     func openFavorites()
     func openDetails(id:String)
     
+    func loadPokemons()
+    
 }
 
 protocol PokemonsCollectionInteractorOutputProtocol: class
@@ -40,6 +44,8 @@ protocol PokemonsCollectionInteractorOutputProtocol: class
     /**
     * Add here your methods for communication INTERACTOR -> PRESENTER
     */
+    func showData(data:AnyObject)
+    func showErrorMessage(error:NSError)
 }
 
 protocol PokemonsCollectionInteractorInputProtocol: class
@@ -50,6 +56,8 @@ protocol PokemonsCollectionInteractorInputProtocol: class
     /**
     * Add here your methods for communication PRESENTER -> INTERACTOR
     */
+    
+    func loadData()
 }
 
 protocol PokemonsCollectionDataManagerInputProtocol: class
@@ -57,6 +65,7 @@ protocol PokemonsCollectionDataManagerInputProtocol: class
     /**
     * Add here your methods for communication INTERACTOR -> DATAMANAGER
     */
+    
 }
 
 protocol PokemonsCollectionAPIDataManagerInputProtocol: class
@@ -64,6 +73,8 @@ protocol PokemonsCollectionAPIDataManagerInputProtocol: class
     /**
     * Add here your methods for communication INTERACTOR -> APIDATAMANAGER
     */
+    func loadPokemonsData(completion: ((response:AnyObject, error:NSError?) -> ())?)
+    
 }
 
 protocol PokemonsCollectionLocalDataManagerInputProtocol: class

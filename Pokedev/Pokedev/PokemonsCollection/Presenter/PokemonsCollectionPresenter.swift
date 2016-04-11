@@ -5,12 +5,15 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 class PokemonsCollectionPresenter: PokemonsCollectionPresenterProtocol, PokemonsCollectionInteractorOutputProtocol
 {
     weak var view: PokemonsCollectionViewProtocol?
     var interactor: PokemonsCollectionInteractorInputProtocol?
     var wireFrame: PokemonsCollectionWireFrameProtocol?
+    
+    private let DEFAULT_ERROR_MESSAGE = "Something went wrong, sorry!"
     
     init() {
     
@@ -19,8 +22,45 @@ class PokemonsCollectionPresenter: PokemonsCollectionPresenterProtocol, Pokemons
     // MARK: - Data layer
     func loadPokemons() {
         
-        // TODO: load the data from the ned
+        // TODO: load the data from the net
+        interactor?.loadData()
         
+    }
+    
+    // MARK: INTERACTOR -> PRESENTER
+    func showData(data: AnyObject) {
+        //DO something
+        let json = JSON(data)
+        
+        for (key, subJson):(String, JSON) in json {
+            //Do something you want
+            print(subJson, key)
+            let pokemon = Pokemon()
+            
+            // pokemon.name =
+        }
+
+        print("I got a lot of pokemeons")
+
+        
+    }
+    
+    func showErrorMessage(error: NSError) {
+      
+        guard (view != nil) else {
+            return
+        }
+        
+        // TODO log the core error with crashlythics
+        if let message = error.localizedFailureReason {
+            
+            view!.showErrorMessage(message)
+        } else {
+            
+            view!.showErrorMessage(DEFAULT_ERROR_MESSAGE)
+
+        }
+      
     }
     
     // MARK: - User Interactions
