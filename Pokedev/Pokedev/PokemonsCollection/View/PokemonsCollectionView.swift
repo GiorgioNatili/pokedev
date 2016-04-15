@@ -8,7 +8,8 @@ import UIKit
 
 class PokemonsCollectionView: UICollectionViewController, PokemonsCollectionViewProtocol
 {
-    private let reuseIdentifier = "Cell"
+    private let reuseIdentifier = "PokemonCollectionCell"
+    private var currentPokemons:[Pokemon]!
 
     var presenter: PokemonsCollectionPresenterProtocol?
     
@@ -18,6 +19,9 @@ class PokemonsCollectionView: UICollectionViewController, PokemonsCollectionView
         
         // Register cell classes
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        // Initialize the data structrure
+        self.currentPokemons = [Pokemon]()
         
         guard (presenter != nil) else {
             
@@ -31,18 +35,21 @@ class PokemonsCollectionView: UICollectionViewController, PokemonsCollectionView
     // MARK: UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        print ("collectionView \(currentPokemons.count)")
+        return currentPokemons.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         
+        cell.backgroundColor = UIColor.whiteColor()
+
         // Configure the cell
         
         return cell
@@ -67,7 +74,11 @@ class PokemonsCollectionView: UICollectionViewController, PokemonsCollectionView
         
     }
     
-    
+    func renderData(value: [Pokemon]) {
+        
+        currentPokemons = value
+        self.collectionView?.reloadData()
+    }
     
     // MARK: - User Interactions
     @IBAction func openFavorites(sender: AnyObject) {

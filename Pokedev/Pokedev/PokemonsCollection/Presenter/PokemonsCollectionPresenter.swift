@@ -29,19 +29,34 @@ class PokemonsCollectionPresenter: PokemonsCollectionPresenterProtocol, Pokemons
     
     // MARK: INTERACTOR -> PRESENTER
     func showData(data: AnyObject) {
-        //DO something
-        let json = JSON(data)
         
-        for (key, subJson):(String, JSON) in json {
-            //Do something you want
-            print(subJson, key)
+        guard (view != nil) else {
+            return
+        }
+        
+        let json = JSON(data)
+        let results = json["results"]
+        
+        var pokemons = [Pokemon]()
+        
+        for (_, content):(String, JSON) in results {
+            
             let pokemon = Pokemon()
             
-            // pokemon.name =
+            if let name = content["name"].string {
+                
+                pokemon.name = name
+            }
+            
+            if let url = content["url"].string {
+                
+                pokemon.detailsAPI = url
+            }
+            
+            pokemons.append(pokemon)
         }
-
-        print("I got a lot of pokemeons")
-
+        
+        view!.renderData(pokemons)
         
     }
     

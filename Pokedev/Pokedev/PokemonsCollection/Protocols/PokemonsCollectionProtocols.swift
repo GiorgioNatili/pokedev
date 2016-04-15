@@ -13,6 +13,7 @@ protocol PokemonsCollectionViewProtocol: class
     */
     
     func showErrorMessage(message:String)
+    func renderData(value: [Pokemon])
 }
 
 protocol PokemonsCollectionWireFrameProtocol: class
